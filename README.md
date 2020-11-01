@@ -4,7 +4,7 @@ Simple app for pizza order listing using angular redux.
 
 ## DEMO
 
-![Demo](../master/demo.gif)
+![Demo](./demo.gif)
 
 ## Project Features
 
