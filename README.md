@@ -18,7 +18,7 @@ ng serve
 
 ## Production Build Run
 
-ng prod
+ng build --prod
 
 ## Dependencies
 
