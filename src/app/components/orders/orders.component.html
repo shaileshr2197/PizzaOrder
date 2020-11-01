@@ -39,7 +39,7 @@
         <ng-container *ngFor="let order of orders">
             <tbody>
                 <tr>
-                    <td><a href="javascript:;" (click)="viewOrder(order.id)" class="cls-link">{{order.id}}</a></td>
+                    <td><a href="javascript:;" title="view" (click)="viewOrder(order.id)" class="cls-link">{{order.id}}</a></td>
                     <td>{{order.customer_details.name}}</td>
                     <td>
                         <ng-container *ngFor="let item of order.items;let i = index">
