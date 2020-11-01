@@ -1,0 +1,37 @@
+.cls-loading{
+    position: fixed;
+    top:0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding: 18%;
+    display: none;
+    text-align: center;
+    z-index: 1;
+    &.show{
+        display: block;
+    }
+    &::after{
+        content: '';
+        position: absolute;
+        top:0;
+        right: 0;
+        left:0;
+        bottom: 0;
+        background: #fff;
+        opacity: 0.6;
+    }
+    .spinner-border{
+        z-index: 2;
+        height: 5rem;
+        width: 5rem;
+        position: relative;
+        z-index: 3;
+    }
+    .cls-loader{
+        display: block;
+        position: relative;
+        z-index: 3;
+        margin-top: 10px;
+    }
+}

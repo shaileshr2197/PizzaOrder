@@ -1,0 +1,63 @@
+.cls-orders{
+    .nav-pills{
+        border-bottom: 1px solid #ccc;
+        margin-bottom: -2px;
+        .nav-link{
+            color:#666;
+            &.active{
+                color: #007bff;
+                border-bottom: 2px solid #007bff;
+                border-radius: 0;
+                background: none;
+            }
+        }
+    }
+    .cls-tabs{
+        thead th{
+            border:0;
+            font-weight: 500;
+            color:#666
+        }
+        tbody{
+            box-shadow:-1px 0px 3px #dadada;
+            background: #fff;
+            border-radius: 4px;
+            td{
+                border: 0;
+                font-size: 14px;
+                vertical-align: middle;
+                .cls-link{
+                    color:#005aaa;
+                    text-decoration: none;
+                }
+                .dropdown{
+                    .dropdown-toggle{
+                        font-size: 14px;
+                        padding: 3px 12px;
+                        width: 135px;
+                        text-align: left;
+                        position: relative;
+                        border:0;
+                        &.order_received{
+                            background: #f3ae14;
+                        }
+                        &.preparing{
+                            background: #9783e8;
+                        }
+                        &.ready_to_serve{
+                            background: #52bd7d
+                        }
+                        &::after{
+                            position: absolute;
+                            right:10px;
+                            top:12px;
+                        }
+                    }
+                }
+            }
+            &.no-bg{
+                box-shadow: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,69 @@
+<div class="cls-orders">
+    <div class="container mt-3">
+        <h3 class="my-4">Orders</h3>
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="nav nav-pills mb-2" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                    <a class="nav-link active" data-toggle="pill" href="#pills-all-orders" role="tab" aria-controls="pills-home" aria-selected="true">All orders</a>
+                    </li>
+                    <li class="nav-item" *ngFor="let status of statusVal">
+                    <a class="nav-link" data-toggle="pill" href="#pills-{{status.status}}" role="tab" aria-controls="pills-{{status.status}}" aria-selected="false">{{status.label}}</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active cls-tabs" id="pills-all-orders" role="tabpanel" aria-labelledby="pills-all-orders-tab">
+                        <ng-container *ngTemplateOutlet="orderDetails;context:{allOrders:allOrders}"></ng-container>
+                    </div>
+                    <div class="tab-pane fade cls-tabs" id="pills-{{status.status}}" role="tabpanel" aria-labelledby="pills-{{status.status}}-tab"  *ngFor="let status of statusVal">
+                        <ng-container *ngTemplateOutlet="orderDetails;context:{allOrders: allOrders | orderStatus : status.status}"></ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #orderDetails let-orders='allOrders'>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order Id</th>
+                <th>Customer</th>
+                <th>Items Ordered</th>
+                <th>Created</th>
+                <th>Total</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <ng-container *ngFor="let order of orders">
+            <tbody>
+                <tr>
+                    <td><a href="javascript:;" (click)="viewOrder(order.id)" class="cls-link">{{order.id}}</a></td>
+                    <td>{{order.customer_details.name}}</td>
+                    <td>
+                        <ng-container *ngFor="let item of order.items;let i = index">
+                            {{i+1}}. {{item.name}}
+                        </ng-container>
+                    </td>
+                    <td>{{order.created_date | date:'d, MMM	yyyy'}}</td>
+                    <td><em class="fa fa-inr"></em> {{order.grand_total | number : '1.2-2'}}</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle {{order.status}}" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{getStatus(order.status)}}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item" type="button" *ngFor="let status of statusVal" (click)='showAlert(order.id,status.status)'>{{status.label}}</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody class="no-bg">
+                <tr height="15"></tr>
+            </tbody>
+        </ng-container>
+    </table>
+</ng-template>
+<app-alert *ngIf="alertContent?.orderId" [data]="alertContent" (statusVal)="changeStatus($event)"></app-alert>
