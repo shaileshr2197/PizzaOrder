@@ -23,4 +23,4 @@ ng build --prod
 ## Dependencies
 
 - Bootstrap,Jquery,Font-awesome
-- Redux - Ng/Rx
+- Redux - NgRX
